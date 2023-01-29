@@ -1,0 +1,57 @@
+  import React, { useState, useEffect ,useCallback} from 'react';
+  const App = () => {
+
+  
+
+    const [inputValue, setinputValue] = useState("");
+
+    useEffect(() => {
+      const k = parseInt(localStorage.getItem("inputValue"));
+      setinputValue(k+1)
+    }, []);
+
+
+    useEffect(() => {
+      
+      localStorage.setItem("inputValue", inputValue);
+      console.log("value submitted")
+    }, [inputValue]);
+
+
+    function setting(e){
+      setinputValue(e.target.value)
+    }
+    const Submit = () => {
+      alert(inputValue)
+      
+    }
+
+    
+      
+
+    return (
+      <React.Fragment>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          onChange={(e)=>setting(e)}
+          
+          value={inputValue}
+        />
+        <button onClick={(e)=>Submit(e)}>
+          sunmit
+        </button>
+        <div>{inputValue}</div>
+
+      </React.Fragment>
+    );
+  };
+
+
+
+
+
+
+
+
+  export default App;
